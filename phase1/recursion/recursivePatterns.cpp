@@ -11,12 +11,24 @@ void print1(int n)
     cout << endl;
     print1(n - 1);
 }
-void print1(int r, int c)
+void print2(int r, int c)
 {
+    if (r == 0)
+        return;
+    if (c < r)
+    {
+        cout << "* ";
+        print2(r, c + 1);
+    }
+    else
+    {
+        cout << endl;
+        print2(r - 1, 0);
+    }
 }
 int main()
 {
     cout << endl;
-    print1(4);
+    print2(4, 0);
     return 0;
 }

@@ -1,0 +1,3 @@
+1: to initialize static  data members
+2:to define member functions outside the class
+3:to define constructors outside the class

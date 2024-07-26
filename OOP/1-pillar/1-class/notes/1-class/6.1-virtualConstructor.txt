@@ -1,0 +1,7 @@
+a constructor in CPP can never be virtual because constructor is called when an object is created, and at that time we dont have virtuasl table in memory{since virtual table gets created when we have base ptr referncing to derived class object}
+but virtual destructor is possible
+
+d *derived = new d();
+When d *derived = new d(); is executed, the constructor of d is called. Because d inherits from b, the constructor of b is called first, followed by the constructor of d.
+o/p:Constructing base 
+Constructing derived

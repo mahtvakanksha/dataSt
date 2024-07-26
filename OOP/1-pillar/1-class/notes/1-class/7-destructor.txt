@@ -1,0 +1,36 @@
+destroys objects to free up memory
+no arg, no R.T
+same class name  with ~ tilde sign
+not more than one
+cant be overloaded
+destroyes objects in reverse order
+ constructor uses new to create memory in heap, therefore it needs to be freed
+
+ #include <iostream>
+using namespace std;
+
+class Test {
+    static int cnt=0;
+public:
+    Test() { cout << "\n Constructor executed"<<count;
+    count++; }
+    ~Test() { cout << "\nDestructor executed"<<count;count--; }
+};
+main()
+{
+    Test t,t1;
+    return 0;
+}
+o/p: construtor executed0
+o/p: construtor executed1
+o/p: destructor executed1
+o/p: destructor executed0
+
+calling a destructor explicitly:
+obj_name.~className()
+
+we need to write explicitly destructor when we dynamically allocates memory in heap else compliler does it for stack memory allocation
+
+destructor can be defined as private when we want to control the deletion of the object manually.
+
+The constructor can be overloaded using various parameter but destructor cannot be overloaded as it does not contain parameters.. This is one main reason.

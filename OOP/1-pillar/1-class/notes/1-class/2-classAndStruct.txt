@@ -1,0 +1,30 @@
+CLASS:
+
+a blueprint, or a template, set of instructions to build objects
+to group similar objects
+class members are pvt by default
+instance--->obj
+
+syntax--->
+Class class_name{
+    data members;
+    member_functions();
+};
+
+similiarities with structure:
+both are container types
+both have members
+both can implement interfaces
+
+differences with structure:
+structure are VALUE types but classes are REFERENCE types
+(i.e, structure *vars* have data from structure but *objects* have refernce to the class data)
+members are public by default in str, pvt in class
+use struct only to group data, and class when better functionality required
+
+
+syntax of structure:
+struct structure_name{
+    type strmem1;
+    type strmem2;
+};

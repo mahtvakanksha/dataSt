@@ -1,0 +1,10 @@
+mem of struct are public by default whereas mem of class are pvt!
+what does that mean?and how we can change?
+
+ACCESS MODIFIERS:
+known as ACCESS Specifiers in cpp
+specifies scope of a feild, method,constructor
+
+types:public,private, protected
+
+but we have non access specifiers too!And JAVA have 4 access modifiers:4th: Default:access level only within package(by default) It provides more accessibility than private. But, it is more restrictive than protected, and public.

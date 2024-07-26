@@ -1,0 +1,151 @@
+The "Rule of Zero," "Rule of Three," and "Rule of Five" are guidelines in C++ for managing resource ownership and ensuring proper resource cleanup, especially when dealing with dynamic memory, file handles, or other resources. These rules help prevent resource leaks, double deletion, and other resource management issues.
+
+Rule of Zero
+The Rule of Zero states that you should rely on automatic resource management and avoid writing any of the following special member functions if possible:
+
+Destructor
+Copy constructor
+Copy assignment operator
+Move constructor
+Move assignment operator
+Instead, use standard library facilities like smart pointers (e.g., std::unique_ptr, std::shared_ptr), containers (e.g., std::vector, std::string), and RAII (Resource Acquisition Is Initialization) classes to manage resources automatically. By following the Rule of Zero, you let the compiler handle resource management, reducing the likelihood of resource leaks and other issues.
+
+Example of Rule of Zero:
+
+cpp
+Copy code
+#include <string>
+#include <memory>
+
+class MyClass {
+public:
+    MyClass(const std::string& name) : name_(name) {}
+private:
+    std::string name_; // std::string manages its own memory
+    std::unique_ptr<int> data_; // std::unique_ptr manages the int resource
+};
+
+int main() {
+    MyClass obj("example");
+    return 0;
+}
+Rule of Three
+The Rule of Three states that if a class requires a user-defined destructor, copy constructor, or copy assignment operator, it likely needs all three. This is because these three functions manage the lifecycle of resources in a similar way, and if you define one, you usually need to ensure the other two handle the resources correctly.
+
+Destructor
+Copy constructor
+Copy assignment operator
+Example of Rule of Three:
+
+cpp
+Copy code
+#include <iostream>
+
+class MyClass {
+public:
+    MyClass(const char* data) : data_(new char[strlen(data) + 1]) {
+        strcpy(data_, data);
+    }
+    
+    // Destructor
+    ~MyClass() {
+        delete[] data_;
+    }
+    
+    // Copy constructor
+    MyClass(const MyClass& other) : data_(new char[strlen(other.data_) + 1]) {
+        strcpy(data_, other.data_);
+    }
+    
+    // Copy assignment operator
+    MyClass& operator=(const MyClass& other) {
+        if (this != &other) {
+            delete[] data_;
+            data_ = new char[strlen(other.data_) + 1];
+            strcpy(data_, other.data_);
+        }
+        return *this;
+    }
+    
+private:
+    char* data_;
+};
+
+int main() {
+    MyClass obj1("example");
+    MyClass obj2 = obj1; // Copy constructor
+    MyClass obj3("another");
+    obj3 = obj1; // Copy assignment operator
+    return 0;
+}
+Rule of Five
+The Rule of Five extends the Rule of Three to include the move constructor and move assignment operator. If a class requires a user-defined destructor, copy constructor, or copy assignment operator, it likely needs all five special member functions to manage resources efficiently, including support for move semantics.
+
+Destructor
+Copy constructor
+Copy assignment operator
+Move constructor
+Move assignment operator
+Example of Rule of Five:
+
+cpp
+Copy code
+#include <iostream>
+#include <utility>
+
+class MyClass {
+public:
+    MyClass(const char* data) : data_(new char[strlen(data) + 1]) {
+        strcpy(data_, data);
+    }
+    
+    // Destructor
+    ~MyClass() {
+        delete[] data_;
+    }
+    
+    // Copy constructor
+    MyClass(const MyClass& other) : data_(new char[strlen(other.data_) + 1]) {
+        strcpy(data_, other.data_);
+    }
+    
+    // Copy assignment operator
+    MyClass& operator=(const MyClass& other) {
+        if (this != &other) {
+            delete[] data_;
+            data_ = new char[strlen(other.data_) + 1];
+            strcpy(data_, other.data_);
+        }
+        return *this;
+    }
+    
+    // Move constructor
+    MyClass(MyClass&& other) noexcept : data_(other.data_) {
+        other.data_ = nullptr;
+    }
+    
+    // Move assignment operator
+    MyClass& operator=(MyClass&& other) noexcept {
+        if (this != &other) {
+            delete[] data_;
+            data_ = other.data_;
+            other.data_ = nullptr;
+        }
+        return *this;
+    }
+    
+private:
+    char* data_;
+};
+
+int main() {
+    MyClass obj1("example");
+    MyClass obj2 = std::move(obj1); // Move constructor
+    MyClass obj3("another");
+    obj3 = std::move(obj2); // Move assignment operator
+    return 0;
+}
+Summary
+Rule of Zero: Avoid writing special member functions by using RAII classes and standard library facilities for automatic resource management.
+Rule of Three: If you need to define a destructor, copy constructor, or copy assignment operator, define all three.
+Rule of Five: If you need to define a destructor, copy constructor, copy assignment operator, move constructor, or move assignment operator, define all five to handle both copy and move semantics properly.

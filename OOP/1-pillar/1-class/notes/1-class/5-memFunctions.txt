@@ -1,0 +1,23 @@
+function within class declaration
+can be defined either inside the class or outside(implicit and explicit)
+
+explicit uses scope resolution:
+for ex- ref memFunctions.cpp
+
+TYPES:
+1-simple: normal function
+
+2-static: i can only access static data members and those static data members must be initialized outside the class definition(globally) using scope resolution:
+
+#syntax:int class_name::y=10;
+
+#and the static data members can be accessed even in non-static member memFunctions
+
+3-const:i've only got one job:dont modify the state of an object,(neither const or normal data members)-->though i can access both
+
+#whereas const data members can't be modified once initialized. neither in normal nor evn in const function
+
+4-inline:i will expand wherever i am called, rather than being invoked by a function call{MUST SEE friend function FROM another CLASS}-->confusing
+
+5-friend:i have the access to even private members of a class, even when i am not their member
+it can modify private data, it can be a global function or a member function from another class

@@ -1,0 +1,54 @@
+constructor:
+a spl method
+invoked automatically asa instance of a class is created
+initializes datamembers of a class
+same name as class
+mostly declared in public section
+donot have a rtn type
+can't be INHERITED
+can't be VIRTUAL{ambiguity}
+can be defined outside the class using ::
+compiler provides implicit default constructor, and implicit copy constructor as well
+
+type:\
+default:no params,creates obj with default value
+parameterized:pass args to const. to initialize obj when it is created
+copy:initialize the vals of another obj of same class using curr obj
+takes refernce to an object of same class as an arg
+classname (classname &obj){}
+move constructor:like copy constructor, doesn;t copy resources, but transfers them
+it takes *rvalue refernce*{obj about to be deleted} and tranfers the ownership from old obj to new
+it avoida overhead. implicitly ptovided by compiler if copy constructor is not defined
+
+NOTE: use initializer list to initialize data:
+className::className(int val):memberVar(val){};
+
+
+COPY CONSTRUCTOR :
+DEEP VS SHALLOW COPY:two strategies for copying objects, especially when dealing with dynamic memory allocation
+#Shallow Copy:
+Definition: A shallow copy duplicates the immediate values of an object, but it does not create copies of dynamically allocated memory or resources. Instead, both the original and the copied object share references to the same memory or resources.
+Changes to the shared resources through one object affect the other, which can lead to issues such as double deletion, data corruption, or unintended side effects.
+#Deep Copy
+Definition: A deep copy creates a duplicate of an object along with its dynamically allocated resources. Each object gets its own separate copy of the resources, ensuring that changes in one object do not affect the other.
+This approach prevents issues related to resource sharing but requires additional effort to manage memory and resources.
+
+
+
+
+
+Shallow Copy stores the references of objects to the original memory address.  
+Deep copy stores copies of the object’s value.
+
+Shallow Copy reflects changes made to the new/copied object in the original object.
+Deep copy doesn’t reflect changes made to the new/copied object in the original object.
+
+Shallow Copy stores the copy of the original object and points the references to the objects.	
+Deep copy stores the copy of the original object and recursively copies the objects as well.
+A shallow copy is faster.	
+Deep copy is comparatively slower.\
+
+Copy Constructor vs Assignment Operator in C++
+https://www.geeksforgeeks.org/copy-constructor-vs-assignment-operator-in-c/
+
+constructor overloading in constOverloading.cpp

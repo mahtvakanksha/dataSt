@@ -1,0 +1,6 @@
+useful in inheritance to make sure that the base class executes its own destructor
+Pure Virtual Destructor
+Abstract Class: A class with a pure virtual destructor is abstract. This means you cannot create an instance of this class directly. It enforces that the class is meant to be a base class and must be inherited from.
+Mandatory Implementation: Derived classes are required to provide their own implementation of the destructor, ensuring proper cleanup
+
+Use Case: Use pure virtual destructors when you want to ensure that a class cannot be instantiated directly and must be inherited. This is useful in defining interfaces or abstract base classes that serve as a foundation for other classes.

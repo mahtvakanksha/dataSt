@@ -1,0 +1,13 @@
+In C++, there is no direct concept of a "virtual copy constructor" since constructors cannot be virtual.However, you can achieve similar functionality by using a virtual clone method
+
+A copy constructor is a special type of constructor that is used to create an object that is an exact copy of the object that is passed.
+
+A virtual function is a member function that is declared in the parent class and is
+redefined(overridden) in a child class that inherits the parent class.
+
+With the use of a virtual copy constructor, the programmer will be able to create an object without knowing the exact data type of the object.
+
+
+if we want to let the run time define the data type of object, we make virtual copy constructor
+
+the virtual clone method is part of base class, and overridden in derived class to return copy of the obj

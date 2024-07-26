@@ -1,0 +1,9 @@
+why destructors eeds to be defined?
+need to be defined when we have pointer members and when we define a base class:
+1-When your object gets destructed, you need to perform some action other than destructing all class members.
+2:When you need to destruct objects through a base class pointer.
+
+When you need to do this, you must define the destructor to be virtual within the base class. Otherwise, your derived destructors won't get called, independent of whether they are defined or not, and whether they are virtual or not
+
+??study about RAII here
+and rule of 0,3,5

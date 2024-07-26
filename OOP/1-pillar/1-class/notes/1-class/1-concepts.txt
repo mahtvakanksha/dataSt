@@ -1,0 +1,21 @@
+#concepts of OOP:
+1:Object: real world entity, having physical and logical occurence
+2:class:collection of objects, that provides blueprint for each objects
+3:inheritance:acquiring prop of parent or base class
+4:polymorphism:doing one task in different ways
+5:abstraction:hiding unnecessary details and showing functionality only
+6:encapsulation:binding code and data together in ine single unit
+7:overloading:assigning new functionality to an existing operator to operate on a new different kind of data type
+
+#advantages of OOP:
+1-easy maintenance and dev
+2-abtraction
+3-more real world usecases
+
+NOTE:CPP is partial OOP because:
+it supports POP
+global var are accessible everywhere in the prog(violates encapsulation)
+
+#disadvantages :
+steep learning curve
+slower execution

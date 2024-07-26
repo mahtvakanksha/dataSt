@@ -1,0 +1,107 @@
+//maxSubArraySum
+
+BRUTE:
+    O(N^3): find all subarrays, find sum, assign highest sum to maxSum
+BRTTER:
+    O(N^2):
+    cutoff one extra loop:
+    int maxSum = 0;
+    for (int i = 0; i < n; i++)
+    {
+        int sum = 0;
+        for (int j = i; j < n; j++)
+        {
+            sum += arr[j];
+            maxSum = max(maxSum, sum);
+        }
+    }
+    return maxSum;
+
+OPTIMAL:---->KADANE'S ALGORITHM:O(N) and O(1)
+    maxSum=INT_MIN //important, sum=0
+    loop through the array:
+        keep on calculating sum of every element for each iteration
+        if sum>maxSum :
+            mxSum=sum
+        if sum<0:
+            sum=0    
+    return maxSum           
+
+for the Brute approach---->use quick, mergeSort(nlogn)
+
+for better ---->O(2*N) and SC--->O(1)
+    loop:
+        count0, count1, count2
+    loop:
+        index=0
+        from i=0--->count0:
+            arr[index++]=0
+        from0--->count1:
+            arr[index++]=1
+         from 0 to count2:
+          arr[index++]=2
+
+
+for best/optimal:O(n):
+
+
+    DUTCH NATIONAL FLAG ALGORITHM:
+
+    loop:
+        if found 0:     
+            swap[mid and low elements]
+            increment (mid++, low++)
+        if found 1:
+            mid++    
+        if found 2:
+            swap[high and mid]
+            decrement(high--)
+            
+
+
+//majority ele:
+
+BRUTE:O(N^2)
+     int majCount = 0;
+    for (int i = 0; i < n - 1; i++)
+    {
+        int count = 1;
+        for (int j = i + 1; j < n; j++)
+        {
+            if (arr[i] == arr[j])
+                count++;
+        }
+        majCount = max(majCount, count);
+        if (majCount > n / 2)
+            return arr[i];
+    }
+    return -1;
+BETTER:O(NlogN)+O(N)  but space complexity:O(N)
+    check second element of map, if > N/2, thre return
+    for (int i = 0; i < n; i++)
+    {
+        m[arr[i]]++;
+    }
+    for (auto it : m)
+    {
+        if (it.second > n / 2)
+            return it.first;
+    }
+    return -1;
+OPTIMAL: MOORE'S VOTING ALGO:
+    O(N) TC
+    ele---->the majEle
+    loop through entire array:
+        if count=0:
+            count=1
+            ele=arr[i]    
+        elif ele==arr[i]:
+            count++
+        else:
+            count--        
+    count=0
+    loop in arr:
+        find occurence of ele in array(count++)
+    if count>n/2:
+        return ele
+    return -1                

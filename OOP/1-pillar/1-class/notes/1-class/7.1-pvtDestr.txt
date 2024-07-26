@@ -1,0 +1,78 @@
+destructors with access modifiers as private are k/a
+use case: whenever we want control over obj destruction
+case 1: NO ERROR:
+class test{
+    private:
+    ~test(){}
+};
+int main(){}
+
+case 2:ERROR:
+class test{
+    private:
+    ~test(){}
+};
+int main(){test t;}  //t can't be destructed since destructor is private
+
+case3:NO ERROR:
+class test{
+    private:
+    ~test(){}
+};
+int main(){test *t;}//since no object is created, only a refernce-->nothin to destruct
+
+
+case4:NO ERROR
+class test{
+    private:
+    ~test(){}
+};
+int main(){test *t=new test;}//DMA-->user needs to delete it but he didnt, so no ERROR
+same for malloc function:
+
+case 5:ERROR
+class test{
+    private:
+    ~test(){}
+};
+int main(){
+    test *t=new test;
+    delete t
+}//at delete t, destructor is called which is private
+
+
+
+WAY FORWARD:
+1-let a friend function delete it for you
+2-class instance method
+
+1:class Test {
+private:
+    ~Test() {}
+ 
+public:
+    friend void destructTest(Test*);
+};
+void destructTest(Test* ptr) { delete ptr; }
+ 
+int main()
+{
+    Test* ptr = new Test;
+    destructTest(ptr); 
+    return 0;
+}
+2:class Test {
+private:
+    ~Test() {cout<<"destructor";}
+ 
+public:
+    test(){ cout<<"constructor";}
+    void destructTest(){delete this};
+};
+ 
+int main()
+{
+    Test* ptr = new Test;
+p->destruct();
+    return 0;
+}

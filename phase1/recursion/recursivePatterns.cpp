@@ -26,9 +26,24 @@ void print2(int r, int c)
         print2(r - 1, 0);
     }
 }
+void print3(int r, int c)
+{
+    if (r == 0)
+        return;
+    if (c < r)
+    {
+        print3(r, c + 1);
+        cout << "* ";
+    }
+    else
+    {
+        print3(r - 1, 0);
+        cout << endl;
+    }
+}
 int main()
 {
     cout << endl;
-    print2(4, 0);
+    print3(4, 0);
     return 0;
 }

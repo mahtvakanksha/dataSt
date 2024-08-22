@@ -1,0 +1,42 @@
+//STATIC VARIABLE
+making a variable static-->allocating it for lifetime of the program
+even if the function containing static variable is called multiple times,it will only be allocated memory once only --> all the objects will share the same static variables
+static variable can't be used to initialize constructors because of this.
+
+ the updations get carried on the next functon call
+
+
+NOTE: no static var in function is allowed in java
+
+IMPORTANT:
+class a{
+    int a;
+    public:
+    a()
+    {
+    cout<<"c\n";
+    }
+    ~a()
+    {
+    cout<<"d\n";
+    }
+};
+int main()
+{
+    int x=0;
+    if(x==0)
+    {
+        static a obj;
+    }
+    cout<<"main";
+}
+
+output:"c
+        main
+        d
+         and not c d main(because the scope of static variables are throughout the program, and not limited to the local scopes)    
+
+//STATIC MEMBER FUNCTIONS:
+
+can be called by obj.staticMemberFunctionName();
+but recommended: className::staticFunctionName();

@@ -40,3 +40,5 @@ output:"c
 
 can be called by obj.staticMemberFunctionName();
 but recommended: className::staticFunctionName();
+
+can be called even without an object initialization and can accss ONLY STATIC members of the class

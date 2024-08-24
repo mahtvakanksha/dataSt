@@ -1,0 +1,28 @@
+a function declared in base class but overridden in derived class
+to achieve RUNTIME polymorphism
+refering DERIVED class obj by BASE class POINTER to execute DERIVED class's version of the method
+
+Virtual functions cant be static i.e.,they will require an instance to be invoked and to determine which function implementation to execute
+
+we can have virtual destructors but not virtual destructors:
+
+VIRTUAL DESTRUCTORS:
+ensures that a base class destructor is called upon destruction of an object when BASE class pointer is deleted{proper cleanup}
+
+Virtual Destructor: Needed for proper cleanup in polymorphic base classes, allowing the derived class destructor to be called when deleting an object through a base class pointer.
+
+No Virtual Constructor: Constructors can't be virtual because they are responsible for creating the object and setting up its initial state, including its vtable. Polymorphism (using virtual functions) only applies to fully constructed objects, not to the process of constructing them.
+
+important:--> late binding is done with accordance to the content of the pointer whereas Early binding is done in accordance to type of pointer:
+
+class base:virtual print()
+            show()
+class derived:print()
+                show()
+
+bptr=&d
+bptr->print()//late binding===derived class function 
+bptr->show()//early binding===base class function gets executed    
+
+
+once a function is created in base class and derived classes, it is by default virtual , even if virtual keyword is omitted

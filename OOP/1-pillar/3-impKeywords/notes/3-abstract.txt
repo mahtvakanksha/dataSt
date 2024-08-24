@@ -1,0 +1,10 @@
+implementation of functions cant always be provided in base class if we dont know--->abstract class
+we cant creat objects of abstract class
+
+a pure virtual function is a cpp virtual function for which we can have implementation but it needs to be overridden in derived class
+to avoid making even derived function abstract like base class
+
+always assign 0 to pure virtual function declaration
+
+
+pointers and refernces,constructors of abstract class types are allowed
